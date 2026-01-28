@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nandeva</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-top">
+                    <h1>NANDEVA</h1>
+                    <div class="header-icons">
+                        <a href="https://instagram.com/nandevaa" target="_blank" rel="noopener" title="icon-btn" class="icon-btn">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <button type="button" class="icon-btn" id="configBtn" style="display:none;">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M12 1v6m0 6v6m-6-12h6m6 0h6m-12 6h6m6 0h6"></path>
+                            </svg>
+                        </button>
+                        <button type="button" id="adminBtn" title="admin" class="icon-btn" onclick="showSection('admin')">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <nav>
+                    <button type="button" class="active" onclick="showSection('home')">Home</button>
+                    <button type="button" onclick="showSection('shows')">Shows</button>
+                    <button type="button" onclick="showSection('galeria')">Galeria</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="home-hero">
+                <svg class="icon-lg" style="color: #a78bfa;" viewBox="0 0 24 24">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+                <h2>Bem-vindo ao Nandeva</h2>
+                <p>Trio musical trazendo energia e autenticidade para cada apresentação.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <svg class="icon-md" style="color: #a78bfa;" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <h3>Shows</h3>
+                    <p>Confira nossas próximas apresentações</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="icon-md" style="color: #a78bfa;" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <h3>Galeria</h3>
+                    <p>Fotos e vídeos dos nossos shows</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="icon-md" style="color: #a78bfa;" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    <h3>Redes Sociais</h3>
+                    <p>Siga @nandevaa no Instagram</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shows Section -->
+        <section id="shows" class="section shows-section">
+            <h2>Próximos Shows</h2>
+            
+            <div id="showAdminPanel" class="admin-panel" style="display:none;">
+                <h3>
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Adicionar Show
+                </h3>
+                <div class="form-grid">
+                    <input type="date" id="showDate" placeholder="Data">
+                    <input type="text" id="showLocation" placeholder="Cidade">
+                    <input type="text" id="showVenue" placeholder="Local/Casa de shows">
+                </div>
+                <button class="btn-primary" onclick="addShow()">Adicionar</button>
+            </div>
+
+            <div id="showsList" class="shows-list"></div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="galeria" class="section gallery-section">
+            <h2>Galeria</h2>
+            
+            <h3>Fotos</h3>
+            <div id="photoAdminPanel" class="admin-panel" style="display:none;">
+                <div class="upload-area">
+                    <label for="photoUpload" class="upload-btn">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span id="photoUploadText">Selecionar Foto</span>
+                    </label>
+                    <input type="file" id="photoUpload" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+                    <p class="upload-info" id="photoUploadInfo">Configure o Cloudinary primeiro (ícone de engrenagem)</p>
+                </div>
+            </div>
+            <div id="photoGrid" class="photo-grid"></div>
+
+            <h3>Vídeos</h3>
+            <div id="videoAdminPanel" class="admin-panel" style="display:none;">
+                <div class="upload-area">
+                    <label for="videoUpload" class="upload-btn">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span id="videoUploadText">Selecionar Vídeo</span>
+                    </label>
+                    <input type="file" id="videoUpload" accept="video/*" style="display:none;" onchange="handleVideoUpload(event)">
+                    <p class="upload-info" id="videoUploadInfo">Configure o Cloudinary primeiro (ícone de engrenagem)</p>
+                </div>
+            </div>
+            <div id="videoGrid" class="video-grid"></div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin" class="section admin-login">
+            <div id="loginForm" class="login-card">
+                <h2>Área Administrativa</h2>
+                <input type="password" id="adminPassword" placeholder="Senha" onkeypress="if(event.key==='Enter') login()">
+                <button class="btn-primary" style="width:100%;" onclick="login()">Entrar</button>
+                <p>Senha padrão: nandeva2025</p>
+            </div>
+            <div id="adminPanel" class="login-card" style="display:none;">
+                <h2>Bem-vindo, Admin!</h2>
+                <p style="margin-bottom:1.5rem;">Você está logado. Navegue pelas seções Shows e Galeria para gerenciar o conteúdo.</p>
+                <button class="btn-primary" style="width:100%;background:#dc2626;" onclick="logout()">Sair</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Config Modal -->
+    <div id="configModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Configurar Cloudinary</h3>
+                <button title="icon-btn" class="icon-btn" onclick="closeConfigModal()">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Cloud Name</label>
+                <input type="text" id="cloudName" placeholder="seu-cloud-name">
+                
+                <label>Upload Preset</label>
+                <input type="text" id="uploadPreset" placeholder="seu-preset">
+
+                <div class="config-info">
+                    <p>Como configurar:</p>
+                    <ol>
+                        <li>Crie conta grátis em cloudinary.com</li>
+                        <li>No dashboard, copie seu "Cloud Name"</li>
+                        <li>Vá em Settings → Upload → Add upload preset</li>
+                        <li>Modo: Unsigned, copie o nome do preset</li>
+                        <li>Cole os valores acima e salve</li>
+                    </ol>
+                </div>
+
+                <button class="btn-primary" style="width:100%;margin-top:1rem;" onclick="saveConfig()">Salvar Configuração</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nandeva. Todos os direitos reservados.</p>
+            <a href="https://instagram.com/nandevaa" target="_blank" rel="noopener">@nandevaa</a>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js">
+    </script>
+</body>
+</html>
