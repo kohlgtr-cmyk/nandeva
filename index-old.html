@@ -49,22 +49,16 @@
         <!-- Home Section -->
         <section id="home" class="section active">
             <div class="home-hero">
-                <div class="hero-image-container">
-                    <img id="bandImage" src="" alt="Nandeva" class="hero-image">
-                    <div class="hero-overlay"></div>
-                </div>
-                <div class="hero-content">
-                    <svg class="icon-lg" style="color: #a78bfa;" viewBox="0 0 24 24">
-                        <path d="M9 18V5l12-2v13"></path>
-                        <circle cx="6" cy="18" r="3"></circle>
-                        <circle cx="18" cy="16" r="3"></circle>
-                    </svg>
-                    <h2>Bem-vindo ao Nandeva</h2>
-                    <p>Trio acústico trazendo energia, muita música boa e autenticidade para cada apresentação.</p>
-                </div>
+                <svg class="icon-lg" style="color: #a78bfa;" viewBox="0 0 24 24">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+                <h2>Bem-vindo ao Nandeva</h2>
+                <p>Trio acustico trazendo energia, muita musica boa e autenticidade para cada apresentação.</p>
             </div>
             <div class="features">
-                <div class="feature-card" onclick="showSection('shows')">
+                <div class="feature-card">
                     <svg class="icon-md" style="color: #a78bfa;" viewBox="0 0 24 24">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                         <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -74,7 +68,7 @@
                     <h3>Shows</h3>
                     <p>Confira nossas próximas apresentações</p>
                 </div>
-                <div class="feature-card" onclick="showSection('galeria')">
+                <div class="feature-card">
                     <svg class="icon-md" style="color: #a78bfa;" viewBox="0 0 24 24">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                         <circle cx="8.5" cy="8.5" r="1.5"></circle>
@@ -83,7 +77,7 @@
                     <h3>Galeria</h3>
                     <p>Fotos e vídeos dos nossos shows</p>
                 </div>
-                <div class="feature-card" onclick="window.open('https://instagram.com/nandevaa', '_blank')">
+                <div class="feature-card">
                     <svg class="icon-md" style="color: #a78bfa;" viewBox="0 0 24 24">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -136,18 +130,6 @@
                     <input type="file" id="photoUpload" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
                     <p class="upload-info" id="photoUploadInfo">Configure o Cloudinary primeiro (ícone de engrenagem)</p>
                 </div>
-                <div class="upload-area" style="margin-top: 1rem;">
-                    <label for="heroImageUpload" class="upload-btn" style="background: #059669;">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="17 8 12 3 7 8"></polyline>
-                            <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                        <span id="heroImageUploadText">Atualizar Foto Principal da Banda</span>
-                    </label>
-                    <input type="file" id="heroImageUpload" accept="image/*" style="display:none;" onchange="handleHeroImageUpload(event)">
-                    <p class="upload-info">Esta imagem aparecerá no topo da página Home</p>
-                </div>
             </div>
             <div id="photoGrid" class="photo-grid"></div>
 
@@ -188,7 +170,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Configurações</h3>
+                <h3>Configurar Cloudinary</h3>
                 <button title="icon-btn" class="icon-btn" onclick="closeConfigModal()">
                     <svg class="icon" viewBox="0 0 24 24">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -197,7 +179,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h4 style="margin-bottom: 1rem;">Cloudinary (Upload de Imagens/Vídeos)</h4>
                 <label>Cloud Name</label>
                 <input type="text" id="cloudName" placeholder="seu-cloud-name">
                 
@@ -211,28 +192,7 @@
                         <li>No dashboard, copie seu "Cloud Name"</li>
                         <li>Vá em Settings → Upload → Add upload preset</li>
                         <li>Modo: Unsigned, copie o nome do preset</li>
-                    </ol>
-                </div>
-
-                <h4 style="margin: 1.5rem 0 1rem 0;">Firebase (Banco de Dados)</h4>
-                <label>API Key</label>
-                <input type="text" id="firebaseApiKey" placeholder="AIza...">
-                
-                <label>Database URL</label>
-                <input type="text" id="firebaseDatabaseUrl" placeholder="https://seu-projeto.firebaseio.com">
-
-                <label>Project ID</label>
-                <input type="text" id="firebaseProjectId" placeholder="seu-projeto-id">
-
-                <div class="config-info">
-                    <p>Como configurar Firebase:</p>
-                    <ol>
-                        <li>Acesse console.firebase.google.com</li>
-                        <li>Crie um novo projeto (gratuito)</li>
-                        <li>Vá em "Realtime Database" e clique em "Criar banco de dados"</li>
-                        <li>Escolha modo "Teste" (pode alterar depois)</li>
-                        <li>Vá em Configurações do projeto → Seus apps</li>
-                        <li>Adicione um app Web e copie as credenciais</li>
+                        <li>Cole os valores acima e salve</li>
                     </ol>
                 </div>
 
@@ -250,10 +210,7 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js">
+    </script>
 </body>
 </html>

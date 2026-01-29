@@ -98,84 +98,28 @@ main {
   display: block;
 }
 
-/* Home Hero - Nova estrutura com imagem de fundo */
+/* Home */
 .home-hero {
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  margin-bottom: 3rem;
-}
-
-.hero-image-container {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-}
-
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(30, 41, 59, 0.3) 0%,
-    rgba(88, 28, 135, 0.7) 50%,
-    rgba(30, 41, 59, 0.9) 100%
-  );
-}
-
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 10;
-  width: 90%;
-  max-width: 800px;
+  padding: 2rem 0;
 }
 
-.hero-content svg {
+.home-hero svg {
   margin: 0 auto 2rem;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
-.hero-content h2 {
+.home-hero h2 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.hero-content p {
+.home-hero p {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Fallback quando não há imagem */
-.hero-image-container:empty::before,
-.hero-image[src=""]::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #334155 0%, #7c3aed 50%, #334155 100%);
-}
-
-/* Features - Cards clicáveis */
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -191,28 +135,10 @@ main {
   border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  background: rgba(167, 139, 250, 0.2);
-  border-color: rgba(167, 139, 250, 0.5);
-  box-shadow: 0 10px 30px rgba(167, 139, 250, 0.3);
-}
-
-.feature-card:active {
-  transform: translateY(-2px);
 }
 
 .feature-card svg {
   margin: 0 auto 1rem;
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover svg {
-  transform: scale(1.1);
 }
 
 .feature-card h3 {
@@ -390,7 +316,6 @@ button.btn-primary:disabled {
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
-  aspect-ratio: 1;
 }
 
 .photo-item img {
@@ -588,46 +513,19 @@ footer a:hover {
   h1 {
     font-size: 2rem;
   }
-  
-  .hero-image-container {
-    height: 400px;
-  }
-  
-  .hero-content h2 {
+  .home-hero h2 {
     font-size: 2rem;
   }
-  
-  .hero-content p {
-    font-size: 1rem;
-  }
-  
   .form-grid {
     grid-template-columns: 1fr;
   }
-  
   .photo-grid {
     grid-template-columns: 1fr;
   }
-  
   .video-grid {
     grid-template-columns: 1fr;
   }
 }
-
-@media (max-width: 480px) {
-  .hero-image-container {
-    height: 300px;
-  }
-  
-  .hero-content h2 {
-    font-size: 1.5rem;
-  }
-  
-  .hero-content p {
-    font-size: 0.9rem;
-  }
-}
-
 /* Icons using SVG */
 .icon {
   width: 24px;
@@ -657,4 +555,4 @@ footer a:hover {
 
 .douglas:hover {
   color: #c4b5fd;
-}
+}/*# sourceMappingURL=style.css.map */
