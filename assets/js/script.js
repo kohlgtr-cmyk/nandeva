@@ -4,11 +4,14 @@ let cloudinaryConfig = {
     cloudName: '',
     uploadPreset: ''
 };
-let firebaseConfig = {
-    apiKey: '',
-    databaseURL: '',
-    projectId: ''
+
+// Configuração Firebase (pré-configurada para todos)
+const firebaseConfig = {
+    apiKey: 'AIzaSyBJDWLgvISDqG6asNkF9AvtQO_6RWpsOws',
+    databaseURL: 'https://nandeva-66f72-default-rtdb.firebaseio.com',
+    projectId: 'nandeva-66f72'
 };
+
 let database = null;
 
 // Carregar dados ao iniciar
@@ -19,26 +22,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Inicializar Firebase
 function initFirebase() {
-    const savedFirebaseConfig = localStorage.getItem('nandeva-firebase-config');
-    if (savedFirebaseConfig) {
-        firebaseConfig = JSON.parse(savedFirebaseConfig);
+    try {
+        firebase.initializeApp(firebaseConfig);
+        database = firebase.database();
         
-        if (firebaseConfig.apiKey && firebaseConfig.databaseURL && firebaseConfig.projectId) {
-            try {
-                firebase.initializeApp({
-                    apiKey: firebaseConfig.apiKey,
-                    databaseURL: firebaseConfig.databaseURL,
-                    projectId: firebaseConfig.projectId
-                });
-                database = firebase.database();
-                
-                // Listeners em tempo real
-                setupRealtimeListeners();
-                console.log('Firebase conectado com sucesso!');
-            } catch (error) {
-                console.error('Erro ao conectar Firebase:', error);
-            }
-        }
+        // Listeners em tempo real
+        setupRealtimeListeners();
+        console.log('Firebase conectado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao conectar Firebase:', error);
+        // Se falhar, usar localStorage como fallback
+        loadLocalData();
     }
 }
 
@@ -129,9 +123,6 @@ document.getElementById('configBtn').addEventListener('click', () => {
     document.getElementById('configModal').classList.add('active');
     document.getElementById('cloudName').value = cloudinaryConfig.cloudName;
     document.getElementById('uploadPreset').value = cloudinaryConfig.uploadPreset;
-    document.getElementById('firebaseApiKey').value = firebaseConfig.apiKey;
-    document.getElementById('firebaseDatabaseUrl').value = firebaseConfig.databaseURL;
-    document.getElementById('firebaseProjectId').value = firebaseConfig.projectId;
 });
 
 function closeConfigModal() {
@@ -144,36 +135,15 @@ function saveConfig() {
     cloudinaryConfig.uploadPreset = document.getElementById('uploadPreset').value;
     localStorage.setItem('nandeva-cloudinary-config', JSON.stringify(cloudinaryConfig));
     
-    // Salvar Firebase
-    const newFirebaseConfig = {
-        apiKey: document.getElementById('firebaseApiKey').value,
-        databaseURL: document.getElementById('firebaseDatabaseUrl').value,
-        projectId: document.getElementById('firebaseProjectId').value
-    };
-    
-    const configChanged = JSON.stringify(newFirebaseConfig) !== JSON.stringify(firebaseConfig);
-    
-    firebaseConfig = newFirebaseConfig;
-    localStorage.setItem('nandeva-firebase-config', JSON.stringify(firebaseConfig));
-    
     updateUploadInfo();
     closeConfigModal();
-    
-    if (configChanged && firebaseConfig.apiKey) {
-        alert('Configuração salva! A página será recarregada para aplicar as mudanças do Firebase.');
-        location.reload();
-    } else {
-        alert('Configuração salva com sucesso!');
-    }
+    alert('Configuração salva com sucesso!');
 }
 
 function updateUploadInfo() {
     const configured = cloudinaryConfig.cloudName && cloudinaryConfig.uploadPreset;
-    const firebaseConfigured = firebaseConfig.apiKey && firebaseConfig.databaseURL;
     
-    let status = configured ? 'Cloudinary ✓' : 'Configure Cloudinary';
-    status += ' | ';
-    status += firebaseConfigured ? 'Firebase ✓' : 'Configure Firebase';
+    const status = configured ? 'Cloudinary configurado ✓' : 'Configure o Cloudinary primeiro (ícone de engrenagem)';
     
     document.getElementById('photoUploadInfo').textContent = status;
     document.getElementById('videoUploadInfo').textContent = status;
@@ -490,23 +460,21 @@ function loadAllData() {
         cloudinaryConfig = JSON.parse(savedConfig);
     }
     
-    // Carregar configuração do Firebase
-    const savedFirebaseConfig = localStorage.getItem('nandeva-firebase-config');
-    if (savedFirebaseConfig) {
-        firebaseConfig = JSON.parse(savedFirebaseConfig);
-    }
-    
     updateUploadInfo();
     
-    // Se Firebase não estiver configurado, usar localStorage
-    if (!firebaseConfig.apiKey) {
-        const heroImage = localStorage.getItem('nandeva-hero-image');
-        if (heroImage) {
-            document.getElementById('bandImage').src = heroImage;
-        }
-        
-        renderShows(getShowsLocal());
-        renderPhotos(getPhotosLocal());
-        renderVideos(getVideosLocal());
+    // Se Firebase não conectar, carregar dados locais
+    if (!database) {
+        loadLocalData();
     }
+}
+
+function loadLocalData() {
+    const heroImage = localStorage.getItem('nandeva-hero-image');
+    if (heroImage) {
+        document.getElementById('bandImage').src = heroImage;
+    }
+    
+    renderShows(getShowsLocal());
+    renderPhotos(getPhotosLocal());
+    renderVideos(getVideosLocal());
 }

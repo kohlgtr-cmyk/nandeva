@@ -188,7 +188,7 @@
     <div id="configModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Configurações</h3>
+                <h3>Configurar Cloudinary</h3>
                 <button title="icon-btn" class="icon-btn" onclick="closeConfigModal()">
                     <svg class="icon" viewBox="0 0 24 24">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -197,7 +197,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h4 style="margin-bottom: 1rem;">Cloudinary (Upload de Imagens/Vídeos)</h4>
                 <label>Cloud Name</label>
                 <input type="text" id="cloudName" placeholder="seu-cloud-name">
                 
@@ -211,28 +210,7 @@
                         <li>No dashboard, copie seu "Cloud Name"</li>
                         <li>Vá em Settings → Upload → Add upload preset</li>
                         <li>Modo: Unsigned, copie o nome do preset</li>
-                    </ol>
-                </div>
-
-                <h4 style="margin: 1.5rem 0 1rem 0;">Firebase (Banco de Dados)</h4>
-                <label>API Key</label>
-                <input type="text" id="firebaseApiKey" placeholder="AIza...">
-                
-                <label>Database URL</label>
-                <input type="text" id="firebaseDatabaseUrl" placeholder="https://seu-projeto.firebaseio.com">
-
-                <label>Project ID</label>
-                <input type="text" id="firebaseProjectId" placeholder="seu-projeto-id">
-
-                <div class="config-info">
-                    <p>Como configurar Firebase:</p>
-                    <ol>
-                        <li>Acesse console.firebase.google.com</li>
-                        <li>Crie um novo projeto (gratuito)</li>
-                        <li>Vá em "Realtime Database" e clique em "Criar banco de dados"</li>
-                        <li>Escolha modo "Teste" (pode alterar depois)</li>
-                        <li>Vá em Configurações do projeto → Seus apps</li>
-                        <li>Adicione um app Web e copie as credenciais</li>
+                        <li>Cole os valores acima e salve</li>
                     </ol>
                 </div>
 
