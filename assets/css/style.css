@@ -649,12 +649,80 @@ footer a:hover {
   height: 40px;
 }
 
-.douglas {
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  transition: color 0.3s;
+.rddev-link::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #a78bfa;
+    border-radius: 50%;
+    margin-left: 4px;
+    animation: pulse 2s infinite;
 }
 
-.douglas:hover {
-  color: #c4b5fd;
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.footer-bottom {
+    background-color: #581c87;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.copyright {
+    color: #efefef;
+    font-size: 0.9rem;
+}
+
+.developer {
+    color: #f9f3e3;
+    font-size: 0.9rem;
+}
+
+/* Estilização do link RDDev */
+.rddev-link {
+    text-decoration: none;
+    color: #efefef;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.rddev-link span {
+    color: #a78bfa;
+    transition: color 0.3s ease;
+}
+
+/* Efeito de Hover */
+.rddev-link:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+.rddev-link:hover span {
+    color: #5fc3e4; /* Muda o azul levemente no hover */
+}
+
+/* Responsivo para celulares */
+@media (max-width: 600px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
 }
